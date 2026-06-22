@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: abababababababa
+      url-base: https://github.com/abababababababa
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -19,5 +21,9 @@ manifest:
     - name: zmk-pmw3610-driver
       remote: badjeff
       revision: main
+    - name: zmk_encoder
+      remote: abababababababa
+      revision: main
+      path: modules/zmk_encoder
   self:
     path: config

@@ -9,20 +9,15 @@
 
 / {
 	behaviors {
-		//エンコーダにスクロールを割り当てるためのビヘイビア
-		msc_ec_l: sensor_rotation_scroll_L {
-	        compatible = "zmk,behavior-sensor-rotate-var";
+        ec_ms_l: ec_ms_h {
+            compatible = "zmk,behavior-encoder-mouse-scroll";
             #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
-			tap-ms = <20>;
         };
-		msc_ec_r: sensor_rotation_scroll_R {
-	        compatible = "zmk,behavior-sensor-rotate-var";
+        ec_ms_r: ec_ms_v {
+            compatible = "zmk,behavior-encoder-mouse-scroll";
             #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
-			tap-ms = <20>;
         };
-	};
+    };
 };
 
 //スクロールの調整
@@ -69,8 +64,8 @@ keymap {
             &kp LSHFT  &kp Z   &kp X  &kp C  &kp V  &kp B      &kp N  &kp M  &kp COMMA  &kp DOT  &kp SLASH &kp LSHFT
             &kp ESC    &kp LALT              &mo 2  &kp SPACE  &mo 1  &kp LA(GRAVE)              &mo 3     &kp LGUI
         >;
-		//&msc_ec_lとrは、上のビヘイビアで作ったもの。
-        sensor-bindings = <&msc_ec_l SCRL_LEFT SCRL_RIGHT &msc_ec_r SCRL_UP SCRL_DOWN>;
+		//&ec_ms_lとrは、上のビヘイビアで作ったもの。
+        sensor-bindings = <&ec_ms_l SCRL_LEFT SCRL_RIGHT &ec_ms_r SCRL_DOWN SCRL_UP>;
     };
 	
     layer_1 {
@@ -90,7 +85,7 @@ keymap {
             &trans &trans                  &trans  &trans     &trans  &trans                        &trans     &trans
         >;
 		//レイヤー2のときだけ、左手のエンコーダを回すとボリュームの上下ができるようになっています。
-		sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &msc_ec_r SCRL_UP SCRL_DOWN>;
+		sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &ec_ms_r SCRL_DOWN SCRL_UP>;
 
     };
 
